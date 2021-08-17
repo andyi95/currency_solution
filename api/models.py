@@ -18,12 +18,14 @@ class Currency(models.Model):
     )
     parent_code = models.CharField(
         max_length=255,
-        verbose_name='Parent code'
+        verbose_name='Parent code',
     )
     iso_num = models.PositiveSmallIntegerField(
-        verbose_name='Числовой ISO код'
+        verbose_name='Числовой ISO код',
+        null=True, blank=True
     )
     iso_char = models.CharField(
         max_length=255,
-        verbose_name='Символьный ISO код'
+        verbose_name='Символьный ISO код',
+        null=True, blank=True
     )
