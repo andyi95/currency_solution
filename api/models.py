@@ -29,3 +29,23 @@ class Currency(models.Model):
         verbose_name='Символьный ISO код',
         null=True, blank=True
     )
+
+
+class Rates(models.Model):
+    """
+    Class for currency rates caching
+    """
+    currency = models.ForeignKey(
+        Currency, on_delete=models.CASCADE,
+        related_name='currency', verbose_name='валюта'
+    )
+    rate = models.FloatField(verbose_name='Котировка')
+    date = models.DateField(verbose_name='Дата')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=('currency', 'rate', 'date'),
+                name='Котировка валюты на день'
+            )
+        ]
